@@ -11,9 +11,11 @@ import UIKit
 private let reuseIdentifier = "PhotoCell"
 private let headerReuseIdentifier = "HeaderCell"
 
-class PhotosViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout, UISearchBarDelegate {
+class PhotosViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
     
     var photos = [PhotoData.Photo]()
+    var tagFilteredPhotos = [PhotoData.Photo]()
+    var searchActive = false
     
     lazy var searchBar : UISearchBar = {
         let s = UISearchBar()
@@ -46,13 +48,14 @@ class PhotosViewController: UICollectionViewController, UICollectionViewDelegate
     
     private func queryPhotos() {
         
-        let url = URL(string: "https://api.flickr.com/services/feeds/photos_public.gne?format=json&nojsoncallback=1")
         
         
-        if let url = url {
+        guard let url = URL(string: "https://api.flickr.com/services/feeds/photos_public.gne?format=json&nojsoncallback=1") else { return }
             
-            URLSession.shared.dataTask(with: url) { (data, response, error) in
-                
+        let session = URLSession(configuration: .default)
+            let apiClient = APIClient(session: session)
+            
+            apiClient.get(url: url) { (data, error) in
                 if let err = error {
                     print("Error retrieving photos from Flickr", err)
                 }
@@ -64,57 +67,68 @@ class PhotosViewController: UICollectionViewController, UICollectionViewDelegate
                     let decoder = JSONDecoder()
                     let photoData = try decoder.decode(PhotoData.self, from: jsonData)
                     self.photos = photoData.photos
+                    self.photos.sort(by: { (p1, p2) -> Bool in
+                        return p1.published?.compare(p2.published ?? "") == .orderedDescending
+                    })
                     
                     DispatchQueue.main.async {
                         self.collectionView?.reloadData()
-
+                        
                     }
                     
                 } catch let err {
                     print("Error decoding episodes from JSON", err)
                 }
-                }.resume()
-        }
+            }
+            
         
         
     }
 
 
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using [segue destinationViewController].
-        // Pass the selected object to the new view controller.
-    }
-    */
 
     // MARK: UICollectionViewDataSource
 
 
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        if searchBar.text?.isEmpty == true {
         return photos.count
+        } else {
+            return tagFilteredPhotos.count
+        }
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! PhotoCell
     
-        let photo = photos[indexPath.row]
+        if searchBar.text?.isEmpty == true {
         
-       cell.photo = photo
+        let photo = photos[indexPath.row]
+        cell.photo = photo
+        } else {
+            let photo = tagFilteredPhotos[indexPath.row]
+            cell.photo = photo
+        }
         
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
-        var height: CGFloat = 40 + 8 + 8 // username userProfileImageView
+        var height: CGFloat = 40 + 8 + 8 + 60
         height += view.frame.width
-        height += 60
         
+        // TO DO: This doesn't work yet
+        
+//        if let cell = collectionView.cellForItem(at: indexPath) as? PhotoCell {
+        
+        
+//        if cell.userAuthorized {
+            height += 50
+//        }
+//        }
+
         return CGSize(width: view.frame.width-16, height: height)
     }
     

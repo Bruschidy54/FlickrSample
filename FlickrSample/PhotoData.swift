@@ -23,7 +23,6 @@ struct PhotoData: Codable {
         let media: Media?
         let title: String?
         let link: String?
-        let description: String?
         let author: String?
         let authorId: String?
         let tags: String?
@@ -35,7 +34,6 @@ struct PhotoData: Codable {
             case media
             case title
             case link
-            case description
             case author
             case authorId = "author_id"
             case tags

@@ -12,13 +12,14 @@
 		CD74ED8720E9C73500BD122B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CD74ED8620E9C73500BD122B /* Assets.xcassets */; };
 		CD74ED8A20E9C73500BD122B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CD74ED8820E9C73500BD122B /* LaunchScreen.storyboard */; };
 		CD74ED9520E9C73500BD122B /* FlickrSampleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD74ED9420E9C73500BD122B /* FlickrSampleTests.swift */; };
-		CD74EDA020E9C73500BD122B /* FlickrSampleUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD74ED9F20E9C73500BD122B /* FlickrSampleUITests.swift */; };
 		CD74EDAE20E9CB8200BD122B /* PhotosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD74EDAD20E9CB8200BD122B /* PhotosViewController.swift */; };
 		CD74EDB020E9CC6200BD122B /* PhotoData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD74EDAF20E9CC6200BD122B /* PhotoData.swift */; };
 		CD74EDB220EABEDF00BD122B /* UIColor+theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD74EDB120EABEDF00BD122B /* UIColor+theme.swift */; };
 		CD74EDB420EAE5FC00BD122B /* PhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD74EDB320EAE5FB00BD122B /* PhotoCell.swift */; };
 		CD74EDB620EAE6B500BD122B /* CustomImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD74EDB520EAE6B500BD122B /* CustomImageView.swift */; };
 		CD74EDB820EAE84F00BD122B /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD74EDB720EAE84F00BD122B /* Extensions.swift */; };
+		CD74EDBE20EB132400BD122B /* PhotosViewController+UISearchBarDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD74EDBD20EB132400BD122B /* PhotosViewController+UISearchBarDelegate.swift */; };
+		CD74EDC020EC06DB00BD122B /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD74EDBF20EC06DB00BD122B /* APIClient.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,14 +50,14 @@
 		CD74ED9420E9C73500BD122B /* FlickrSampleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlickrSampleTests.swift; sourceTree = "<group>"; };
 		CD74ED9620E9C73500BD122B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CD74ED9B20E9C73500BD122B /* FlickrSampleUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FlickrSampleUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		CD74ED9F20E9C73500BD122B /* FlickrSampleUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlickrSampleUITests.swift; sourceTree = "<group>"; };
-		CD74EDA120E9C73500BD122B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CD74EDAD20E9CB8200BD122B /* PhotosViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosViewController.swift; sourceTree = "<group>"; };
 		CD74EDAF20E9CC6200BD122B /* PhotoData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoData.swift; sourceTree = "<group>"; };
 		CD74EDB120EABEDF00BD122B /* UIColor+theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+theme.swift"; sourceTree = "<group>"; };
 		CD74EDB320EAE5FB00BD122B /* PhotoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCell.swift; sourceTree = "<group>"; };
 		CD74EDB520EAE6B500BD122B /* CustomImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomImageView.swift; sourceTree = "<group>"; };
 		CD74EDB720EAE84F00BD122B /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		CD74EDBD20EB132400BD122B /* PhotosViewController+UISearchBarDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PhotosViewController+UISearchBarDelegate.swift"; sourceTree = "<group>"; };
+		CD74EDBF20EC06DB00BD122B /* APIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,7 +90,6 @@
 			children = (
 				CD74ED7E20E9C73200BD122B /* FlickrSample */,
 				CD74ED9320E9C73500BD122B /* FlickrSampleTests */,
-				CD74ED9E20E9C73500BD122B /* FlickrSampleUITests */,
 				CD74ED7D20E9C73200BD122B /* Products */,
 			);
 			sourceTree = "<group>";
@@ -115,6 +115,7 @@
 				CD74ED8820E9C73500BD122B /* LaunchScreen.storyboard */,
 				CD74ED8B20E9C73500BD122B /* Info.plist */,
 				CD74EDAF20E9CC6200BD122B /* PhotoData.swift */,
+				CD74EDBF20EC06DB00BD122B /* APIClient.swift */,
 			);
 			path = FlickrSample;
 			sourceTree = "<group>";
@@ -126,15 +127,6 @@
 				CD74ED9620E9C73500BD122B /* Info.plist */,
 			);
 			path = FlickrSampleTests;
-			sourceTree = "<group>";
-		};
-		CD74ED9E20E9C73500BD122B /* FlickrSampleUITests */ = {
-			isa = PBXGroup;
-			children = (
-				CD74ED9F20E9C73500BD122B /* FlickrSampleUITests.swift */,
-				CD74EDA120E9C73500BD122B /* Info.plist */,
-			);
-			path = FlickrSampleUITests;
 			sourceTree = "<group>";
 		};
 		CD74EDBB20EB123C00BD122B /* Utils */ = {
@@ -152,6 +144,7 @@
 			children = (
 				CD74EDAD20E9CB8200BD122B /* PhotosViewController.swift */,
 				CD74EDB320EAE5FB00BD122B /* PhotoCell.swift */,
+				CD74EDBD20EB132400BD122B /* PhotosViewController+UISearchBarDelegate.swift */,
 			);
 			path = Photos;
 			sourceTree = "<group>";
@@ -291,9 +284,11 @@
 				CD74EDB620EAE6B500BD122B /* CustomImageView.swift in Sources */,
 				CD74EDB420EAE5FC00BD122B /* PhotoCell.swift in Sources */,
 				CD74EDB220EABEDF00BD122B /* UIColor+theme.swift in Sources */,
+				CD74EDBE20EB132400BD122B /* PhotosViewController+UISearchBarDelegate.swift in Sources */,
 				CD74ED8020E9C73200BD122B /* AppDelegate.swift in Sources */,
 				CD74EDAE20E9CB8200BD122B /* PhotosViewController.swift in Sources */,
 				CD74EDB820EAE84F00BD122B /* Extensions.swift in Sources */,
+				CD74EDC020EC06DB00BD122B /* APIClient.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -309,7 +304,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CD74EDA020E9C73500BD122B /* FlickrSampleUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
