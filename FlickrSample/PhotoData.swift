@@ -11,6 +11,16 @@ import Foundation
 struct PhotoData: Codable {
     
     struct Photo: Codable {
+        
+        struct Media: Codable {
+            let image: String?
+            
+            enum CodingKeys : String, CodingKey {
+                case image = "m"
+            }
+        }
+        
+        let media: Media?
         let title: String?
         let link: String?
         let description: String?
@@ -22,6 +32,7 @@ struct PhotoData: Codable {
         
         
         enum CodingKeys : String, CodingKey {
+            case media
             case title
             case link
             case description
@@ -35,8 +46,9 @@ struct PhotoData: Codable {
     }
         
         let photos: [Photo]
-        
-        enum CodingKeys : String, CodingKey {
-            case photos = "items"
-        }
+    
+    enum CodingKeys : String, CodingKey {
+        case photos = "items"
+    }
+    
     }
