@@ -118,16 +118,8 @@ class PhotosViewController: UICollectionViewController, UICollectionViewDelegate
         
         var height: CGFloat = 40 + 8 + 8 + 60
         height += view.frame.width
-        
-        // TO DO: This doesn't work yet
-        
-//        if let cell = collectionView.cellForItem(at: indexPath) as? PhotoCell {
-        
-        
-//        if cell.userAuthorized {
             height += 50
-//        }
-//        }
+
 
         return CGSize(width: view.frame.width-16, height: height)
     }
