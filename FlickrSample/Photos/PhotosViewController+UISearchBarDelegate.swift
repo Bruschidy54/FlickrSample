@@ -14,8 +14,15 @@ extension PhotosViewController: UISearchBarDelegate {
         tagFilteredPhotos = photos.filter({ (photo) -> Bool in
             let tmp: PhotoData.Photo = photo
             
-            let range = (tmp.tags as! NSString).range(of: searchText, options: NSString.CompareOptions.caseInsensitive)
-            return range.location != NSNotFound
+            guard let tagsArray = tmp.tags?.components(separatedBy: " ") else { return false }
+            
+            for tag in tagsArray {
+                let range = (tmp.tags as! NSString).range(of: searchText, options: NSString.CompareOptions.caseInsensitive)
+                if range.location != NSNotFound {
+                    return true
+                }
+            }
+           return false
         })
         
         collectionView?.reloadData()
